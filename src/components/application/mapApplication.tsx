@@ -31,6 +31,7 @@ export function MapApplication(){
     return <>
         <header><h1>Map Application</h1></header>
         <nav>
+
             <p>Actions</p>
             <p>More Actions</p>
             <p>Even more Actions</p>
