@@ -1,3 +1,16 @@
+*{
+    margin: unset;
+    font-family: sans-serif;
+}
+
+header{
+    text-align: center;
+}
+nav{
+    display: flex;
+    justify-content: space-evenly;
+}
+
 #root{
     display: grid;
     grid-template-rows: auto auto 1fr;

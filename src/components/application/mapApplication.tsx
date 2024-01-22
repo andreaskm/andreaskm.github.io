@@ -30,7 +30,12 @@ export function MapApplication(){
 
     return <>
         <header><h1>Map Application</h1></header>
-        <nav>Actions</nav>
-        <main ref={mapRef}>Map here</main>
+        <nav>
+            <p>Actions</p>
+            <p>More Actions</p>
+            <p>Even more Actions</p>
+            <p>Last action</p>
+        </nav>
+        <main ref={mapRef}></main>
     </>
 }
