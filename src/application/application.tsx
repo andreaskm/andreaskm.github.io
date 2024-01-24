@@ -1,5 +1,4 @@
 import { Map, View } from "ol";
-import { Layer } from "ol/layer";
 import { OSM } from "ol/source";
 import TileLayer from "ol/layer/Tile";
 import { useGeographic } from "ol/proj";
@@ -25,7 +24,7 @@ export function Application() {
   return (
     <>
       <header>header</header>
-      <nav>nav</nav>
+      <nav>nav </nav>
       <div ref={mapRef}></div>
     </>
   );
