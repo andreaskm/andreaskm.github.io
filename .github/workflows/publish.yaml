@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - reference/*
-      - lecture/*
+      - Lecture/*
       - main
 
 jobs:
