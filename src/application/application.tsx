@@ -21,10 +21,26 @@ export function Application() {
     map.setTarget(mapRef.current);
   }, []);
 
+  function handleZoomToMe(e: React.MouseEvent) {
+    e.preventDefault();
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const { longitude, latitude } = pos.coords;
+
+      map.getView().animate({ center: [longitude, latitude], zoom: 15 });
+    });
+  }
+
   return (
     <>
-      <header>header</header>
-      <nav>nav </nav>
+      <header>
+        <h1>MY MAP</h1>
+      </header>
+      <nav>
+        <a href={"#"} onClick={handleZoomToMe}>
+          ZOOM TO ME
+        </a>
+      </nav>
       <div ref={mapRef}></div>
     </>
   );

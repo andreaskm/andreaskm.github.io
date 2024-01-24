@@ -1,9 +1,28 @@
 * {
   margin: unset;
+  font-family: sans-serif;
+  color: white;
 }
 
 #root {
   display: grid;
   grid-template-rows: auto auto 1fr;
   height: 100dvh;
+  background-color: #181818;
+}
+
+header h1 {
+  font-size: 2em;
+  text-align: center;
+  padding-top: 0.25em;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px;
 }
