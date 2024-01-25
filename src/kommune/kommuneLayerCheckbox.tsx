@@ -34,7 +34,7 @@ export function KommuneLayerCheckbox({
         checked={checked}
         onChange={(e) => setChecked(e.target.checked)}
       />
-      {checked ? "HIDE " : "SHOW "}
+      {checked ? " HIDE " : " SHOW "}
       KOMMUNER
     </label>
   );
