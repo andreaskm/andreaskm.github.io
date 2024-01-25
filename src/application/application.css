@@ -26,3 +26,7 @@ nav {
   justify-content: space-evenly;
   margin: 5px;
 }
+
+nav label {
+  user-select: none;
+}
