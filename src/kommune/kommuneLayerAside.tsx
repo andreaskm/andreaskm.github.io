@@ -11,9 +11,9 @@ export function KommuneAside() {
 
   return (
     <>
-      <aside className={kommuneLayer ? "hidden" : "visible"}>
+      <aside className={kommuneLayer ? "visible" : "hidden"}>
         <div>
-          <h2>Kommuner {kommuneLayer ? "hidden" : "visible"}</h2>
+          <h2>Kommuner {kommuneLayer ? "visible" : "hidden"}</h2>
           <p>Hello</p>
         </div>
       </aside>
