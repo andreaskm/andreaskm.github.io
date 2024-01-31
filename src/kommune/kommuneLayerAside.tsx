@@ -75,7 +75,9 @@ export function KommuneAside() {
           <h2>Kommuner</h2>
           <ul>
             {visibleFeatures?.map((kommune) => (
-              <li>{getStedsnavn(kommune.getProperties().navn)}</li>
+              <li key={kommune.getProperties().kommunenummer}>
+                {getStedsnavn(kommune.getProperties().navn)}
+              </li>
             ))}
           </ul>
         </div>
