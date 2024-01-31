@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MapContext } from "../map/mapcontext";
-import React from "react";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import { Feature } from "ol";
@@ -12,17 +11,17 @@ interface KommuneProperties {
   navn: Stedsnavn[];
 }
 
-interface Stedsnavn {
-  sprak: string;
-  navn: string;
-}
-
 type KommuneFeature = {
   getProperties(): KommuneProperties;
 } & Feature;
 
 function getStedsnavn(navn: Stedsnavn[]) {
   return navn.find((navn) => navn.sprak === "nor")?.navn;
+}
+
+export interface Stedsnavn {
+  sprak: string;
+  navn: string;
 }
 
 function useKommuneFeatures() {
@@ -47,11 +46,11 @@ function useKommuneFeatures() {
 }
 
 export function KommuneAside() {
-  const { features } = useKommuneFeatures();
+  const { kommuneLayer, features } = useKommuneFeatures();
 
   return (
     <>
-      <aside className={features?.length ? "visible" : "hidden"}>
+      <aside className={kommuneLayer ? "visible" : "hidden"}>
         <div>
           <h2>Kommuner</h2>
           <ul>

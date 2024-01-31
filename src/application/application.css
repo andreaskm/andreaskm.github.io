@@ -39,7 +39,7 @@ nav label {
 main aside {
   display: grid;
   grid-template-columns: 0;
-  transition: grid-template-columns 0.5s ease-in-out;
+  transition: grid-template-columns 1ms ease-in-out;
   overflow-x: clip;
   max-height: calc(100vh - 100px);
   overflow-y: auto;

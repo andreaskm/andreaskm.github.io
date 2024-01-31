@@ -13,7 +13,7 @@ const kommunelayer = new VectorLayer({
 });
 
 export function KommuneLayerCheckbox() {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
 
   const { setLayers } = useContext(MapContext);
 
