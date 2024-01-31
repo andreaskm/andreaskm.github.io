@@ -57,3 +57,9 @@ main aside > * {
 main aside.hidden {
   overflow: hidden;
 }
+
+.kommune-overlay {
+  background-color: #181818;
+  translate: -50% calc(-50% - 30px);
+  padding: 0.5em;
+}
