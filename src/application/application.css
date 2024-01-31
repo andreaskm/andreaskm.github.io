@@ -53,3 +53,7 @@ main aside > * {
   padding: 0.5rem;
   min-width: 20ch;
 }
+
+main aside.hidden {
+  overflow: hidden;
+}

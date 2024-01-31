@@ -1,21 +1,13 @@
-import { Map, View } from "ol";
 import { OSM } from "ol/source";
 import TileLayer from "ol/layer/Tile";
-import { useGeographic } from "ol/proj";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import React from "react";
 import "ol/ol.css";
 import "./application.css";
 import { KommuneLayerCheckbox } from "../kommune/kommuneLayerCheckbox";
 import { Layer } from "ol/layer";
-import { MapContext } from "../map/mapcontext";
+import { map, MapContext } from "../map/mapcontext";
 import { KommuneAside } from "../kommune/kommuneLayerAside";
-
-useGeographic();
-
-const map = new Map({
-  view: new View({ center: [10, 60], zoom: 9 }),
-});
 
 export function Application() {
   const [layers, setLayers] = useState<Layer[]>([
@@ -48,7 +40,7 @@ export function Application() {
   }
 
   return (
-    <MapContext.Provider value={{ layers, setLayers }}>
+    <MapContext.Provider value={{ map, layers, setLayers }}>
       <header>
         <h1>MY MAP</h1>
       </header>
