@@ -1,27 +1,27 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { GeoJSON } from "ol/format";
-import { Layer } from "ol/layer";
+import { MapContext } from "../map/mapcontext";
 
 const kommunelayer = new VectorLayer({
+  className: "kommuner",
   source: new VectorSource({
     url: "/kommuner.json",
     format: new GeoJSON(),
   }),
 });
 
-export function KommuneLayerCheckbox({
-  setLayers,
-}: {
-  setLayers: Dispatch<SetStateAction<Layer[]>>;
-}) {
+export function KommuneLayerCheckbox() {
   const [checked, setChecked] = useState(false);
+
+  const { setLayers } = useContext(MapContext);
 
   useEffect(() => {
     if (checked) {
       setLayers((old) => [...old, kommunelayer]);
     }
+    //Kjører før useEffect er ferdig for å fjerne kommune layer
     return () => {
       setLayers((old) => old.filter((l) => l !== kommunelayer));
     };

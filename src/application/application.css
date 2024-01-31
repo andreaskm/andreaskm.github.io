@@ -11,6 +11,11 @@
   background-color: #181818;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
 header h1 {
   font-size: 2em;
   text-align: center;
@@ -29,4 +34,20 @@ nav {
 
 nav label {
   user-select: none;
+}
+
+main aside {
+  display: grid;
+  grid-template-columns: 0;
+  transition: grid-template-columns 0.5s ease-in-out;
+  overflow-x: clip;
+}
+
+main aside.visible {
+  grid-template-columns: auto;
+}
+
+main aside > * {
+  padding: 0.5rem;
+  min-width: 20ch;
 }

@@ -8,6 +8,8 @@ import "ol/ol.css";
 import "./application.css";
 import { KommuneLayerCheckbox } from "../kommune/kommuneLayerCheckbox";
 import { Layer } from "ol/layer";
+import { MapContext } from "../map/mapcontext";
+import { KommuneAside } from "../kommune/kommuneLayerAside";
 
 useGeographic();
 
@@ -46,7 +48,7 @@ export function Application() {
   }
 
   return (
-    <>
+    <MapContext.Provider value={{ layers, setLayers }}>
       <header>
         <h1>MY MAP</h1>
       </header>
@@ -57,9 +59,12 @@ export function Application() {
         <a href={"#"} onClick={handleFocusOnNorway}>
           FOCUS ON NORWAY
         </a>
-        <KommuneLayerCheckbox setLayers={setLayers} />
+        <KommuneLayerCheckbox />
       </nav>
-      <div ref={mapRef}></div>
-    </>
+      <main>
+        <div ref={mapRef}></div>
+        <KommuneAside />
+      </main>
+    </MapContext.Provider>
   );
 }
