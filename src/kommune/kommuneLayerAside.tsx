@@ -75,7 +75,8 @@ export function KommuneAside() {
           <h2>Kommuner</h2>
           <ul>
             {visibleFeatures?.map((kommune) => (
-              <li key={kommune.getProperties().kommunenummer}>
+              //Key gives "Kinn" bug
+              <li /*key={kommune.getProperties().kommunenummer}*/>
                 {getStedsnavn(kommune.getProperties().navn)}
               </li>
             ))}
