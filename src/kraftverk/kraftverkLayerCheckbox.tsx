@@ -6,7 +6,7 @@ import { useLayer } from "../map/useLayer";
 import { FeatureLike } from "ol/Feature";
 import { Feature, MapBrowserEvent } from "ol";
 import { Point } from "ol/geom";
-import { Circle, Fill, Stroke, Style } from "ol/style";
+import { Circle, Fill, Stroke, Style, Text } from "ol/style";
 import { MapContext } from "../map/mapcontext";
 
 const kraftverkLayer = new VectorLayer({
@@ -51,6 +51,13 @@ function activeKraftverkStyle(f: FeatureLike) {
       stroke: new Stroke({ color: "white", width: 1.5 }),
       fill: new Fill({ color: "green" }),
       radius: 8,
+    }),
+    text: new Text({
+      text: kraftverk.vannkraf_1,
+      offsetY: -15,
+      font: "bold 14px sans-serif",
+      fill: new Fill({ color: "black" }),
+      stroke: new Stroke({ color: "white", width: 2 }),
     }),
   });
 }
