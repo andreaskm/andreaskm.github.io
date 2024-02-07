@@ -1,13 +1,14 @@
 import { OSM } from "ol/source";
 import TileLayer from "ol/layer/Tile";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
-import React from "react";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import "ol/ol.css";
 import "./application.css";
 import { KommuneLayerCheckbox } from "../kommune/kommuneLayerCheckbox";
 import { Layer } from "ol/layer";
 import { map, MapContext } from "../map/mapcontext";
 import { KommuneAside } from "../kommune/kommuneLayerAside";
+import { KraftverkLayerCheckbox } from "../kraftverk/kraftverkLayerCheckbox";
+import { KraftverkLayerAside } from "../kraftverk/kraftverkLayerAside";
 
 export function Application() {
   const [layers, setLayers] = useState<Layer[]>([
@@ -52,10 +53,12 @@ export function Application() {
           FOCUS ON NORWAY
         </a>
         <KommuneLayerCheckbox />
+        <KraftverkLayerCheckbox />
       </nav>
       <main>
         <div ref={mapRef}></div>
         <KommuneAside />
+        <KraftverkLayerAside />
       </main>
     </MapContext.Provider>
   );

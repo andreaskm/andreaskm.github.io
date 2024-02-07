@@ -13,6 +13,7 @@ import { MapContext } from "../map/mapcontext";
 import { Feature, MapBrowserEvent, Overlay } from "ol";
 import { Polygon } from "ol/geom";
 import "../application/application.css";
+import { useLayer } from "../map/useLayer";
 
 type KommuneProperties = {
   kommunenummer: string;
@@ -70,18 +71,16 @@ export function KommuneLayerCheckbox() {
     }
   }
 
-  const { setLayers, map } = useContext(MapContext);
+  const { map } = useContext(MapContext);
+  useLayer(kommunelayer, checked);
 
   useEffect(() => {
     if (checked) {
-      setLayers((old) => [...old, kommunelayer]);
       map.on("click", handleClick);
     }
-    //Kjører før useEffect er ferdig for å fjerne kommune layer
     return () => {
       map.un("click", handleClick);
       setSelectedKommune(undefined);
-      setLayers((old) => old.filter((layer) => layer !== kommunelayer));
     };
   }, [checked]);
 
