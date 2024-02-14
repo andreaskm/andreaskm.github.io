@@ -64,7 +64,7 @@ function activeKraftverkStyle(f: FeatureLike) {
 
 export function KraftverkLayerCheckbox() {
   const { map } = useContext(MapContext);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const [activeFeature, setActiveFeature] = useState<KraftverkFeature>();
 

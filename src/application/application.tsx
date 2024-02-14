@@ -1,6 +1,12 @@
 import { OSM } from "ol/source";
 import TileLayer from "ol/layer/Tile";
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, {
+  MutableRefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import "ol/ol.css";
 import "./application.css";
 import { KommuneLayerCheckbox } from "../kommune/kommuneLayerCheckbox";
@@ -9,20 +15,28 @@ import { map, MapContext } from "../map/mapcontext";
 import { KommuneAside } from "../kommune/kommuneLayerAside";
 import { KraftverkLayerCheckbox } from "../kraftverk/kraftverkLayerCheckbox";
 import { KraftverkLayerAside } from "../kraftverk/kraftverkLayerAside";
+import { BaseLayerDropdown } from "../baselayerdropdown/baseLayerDropdown";
 
 export function Application() {
-  const [layers, setLayers] = useState<Layer[]>([
+  const [vectorLayers, setVectorLayers] = useState<Layer[]>([
     new TileLayer({ source: new OSM() }),
   ]);
+
+  const [baseLayer, setBaseLayer] = useState<Layer>(
+    () => new TileLayer({ source: new OSM() }),
+  );
 
   const mapRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
     map.setTarget(mapRef.current);
   }, []);
-  useEffect(() => {
-    map.setLayers(layers);
-  }, [layers]);
+  const allLayers = useMemo(
+    () => [baseLayer, ...vectorLayers],
+    [baseLayer, vectorLayers],
+  );
+
+  useEffect(() => map.setLayers(allLayers), [allLayers]);
 
   function handleZoomToMe(e: React.MouseEvent) {
     e.preventDefault();
@@ -41,17 +55,26 @@ export function Application() {
   }
 
   return (
-    <MapContext.Provider value={{ map, layers, setLayers }}>
+    <MapContext.Provider
+      value={{
+        map,
+        layers: vectorLayers,
+        setLayers: setVectorLayers,
+        setBaseLayer,
+      }}
+    >
       <header>
         <h1>MY MAP</h1>
       </header>
       <nav>
+        <BaseLayerDropdown />
         <a href={"#"} onClick={handleZoomToMe}>
           ZOOM TO ME
         </a>
         <a href={"#"} onClick={handleFocusOnNorway}>
           FOCUS ON NORWAY
         </a>
+
         <KommuneLayerCheckbox />
         <KraftverkLayerCheckbox />
       </nav>

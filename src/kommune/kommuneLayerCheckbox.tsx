@@ -66,8 +66,8 @@ export function KommuneLayerCheckbox() {
       setSelectedKommune(clickedKommune[0]);
       overlay.setPosition(e.coordinate);
     } else {
-      setSelectedKommune(undefined);
       map.removeOverlay(overlay);
+      setSelectedKommune(undefined);
     }
   }
 
