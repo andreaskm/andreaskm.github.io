@@ -4,6 +4,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "prettier": "^3.2.5",
     "vite": "^5.1.4"
   },
   "scripts": {
