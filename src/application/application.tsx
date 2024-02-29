@@ -18,9 +18,7 @@ import { KraftverkLayerAside } from "../kraftverk/kraftverkLayerAside";
 import { BaseLayerDropdown } from "../baselayerdropdown/baseLayerDropdown";
 
 export function Application() {
-  const [vectorLayers, setVectorLayers] = useState<Layer[]>([
-    new TileLayer({ source: new OSM() }),
-  ]);
+  const [vectorLayers, setVectorLayers] = useState<Layer[]>([]);
 
   const [baseLayer, setBaseLayer] = useState<Layer>(
     () => new TileLayer({ source: new OSM() }),
@@ -31,6 +29,7 @@ export function Application() {
   useEffect(() => {
     map.setTarget(mapRef.current);
   }, []);
+
   const allLayers = useMemo(
     () => [baseLayer, ...vectorLayers],
     [baseLayer, vectorLayers],
