@@ -7,6 +7,7 @@ import { MutableRefObject, useEffect, useRef } from "react";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { GeoJSON } from "ol/format";
+import "ol/ol.css";
 
 useGeographic();
 const map = new Map({
