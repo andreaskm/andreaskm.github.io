@@ -27,4 +27,34 @@ app.get("/api/kommuner", async (req, res) => {
   });
 });
 
+app.get("/api/adresser", async (req, res) => {
+  const dbResult =
+    await postgresql.query(`select representasjonspunkt::json, kommunenavn, navnerom from matrikkelenadresse_67433ff2407e490383ace6b0c98a8564.matrikkeladresse where kommunenavn = 'OSLO';
+`);
+
+  /*{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [125.6, 10.1]
+  },
+  "properties": {
+    "name": "Dinagat Islands"
+  }
+}*/
+
+  res.json(
+    dbResult.rows.map((row) => ({
+      type: "Feature",
+      geometry: {
+        type: row.type,
+        coordinates: row.representasjonspunkt,
+      },
+      properties: {
+        name: row.navnerom,
+      },
+    })),
+  );
+});
+
 app.listen(3000);
