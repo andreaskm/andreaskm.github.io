@@ -34,7 +34,7 @@ export function StadiaLayerDropdown() {
             new TileLayer({
               source: new StadiaMaps({
                 layer: e.target.value,
-                apiKey: "", //ApiKey here
+                apiKey: "d1dc7f24-5120-48a7-96c9-07e89e455696", //ApiKey here
               }),
             }),
           ])
