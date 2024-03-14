@@ -14,7 +14,7 @@ export const map = new Map({
     new TileLayer({
       source: new StadiaMaps({
         layer: "outdoors",
-        apiKey: "d1dc7f24-5120-48a7-96c9-07e89e455696",
+        apiKey: "0e9dc8ff-a533-4512-bca6-2186ac3a8609",
       }),
     }),
   ],
