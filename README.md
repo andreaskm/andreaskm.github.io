@@ -38,6 +38,8 @@ Create `index.html`
 
 _*Not using the \<HTML>\</HTML> tags means the OL map will be rendering without needing a css file*_
 
+I also like to add `<body style="margin: 0">` here, but this can also be added in the application.css file later
+
 Create `src/main.tsx`
 
 ```typescript jsx
@@ -137,4 +139,28 @@ export function Application() {
   //Reference the div here to make it show up.
   return <div ref={mapRef}></div>;
 }
+```
+
+# Other things
+
+## Stadia maps
+
+Layers:
+
+```
+Layer name. Valid values:
+alidade_smooth,
+alidade_smooth_dark,
+outdoors,
+stamen_terrain,
+stamen_terrain_background,
+stamen_terrain_labels,
+stamen_terrain_lines,
+stamen_toner_background,
+stamen_toner,
+stamen_toner_labels,
+stamen_toner_lines,
+stamen_toner_lite,
+stamen_watercolor,
+and osm_bright.
 ```
