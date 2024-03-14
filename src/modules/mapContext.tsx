@@ -14,7 +14,7 @@ export const map = new Map({
     new TileLayer({
       source: new StadiaMaps({
         layer: "outdoors",
-        apiKey: "d1dc7f24-5120-48a7-96c9-07e89e455696",
+        apiKey: "",
       }),
     }),
   ],
@@ -30,7 +30,7 @@ export const MapContext = React.createContext<{
     layers: [new TileLayer({
         source: new StadiaMaps({
             layer: "stamen_toner_background",
-            apiKey: "d1dc7f24-5120-48a7-96c9-07e89e455696"
+            apiKey: ""
         })
     })],
     view: new View({center: [10.7722, 59.94445], zoom: 10}),
