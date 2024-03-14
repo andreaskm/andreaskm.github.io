@@ -1,0 +1,28 @@
+{
+  "name": "github-repository",
+  "version": "1.0.0",
+  "description": "Initialize project and create `package.json`:",
+  "main": "index.js",
+  "scripts": {
+    "test": "prettier --check . && tsc --noEmit",
+    "prepare": "husky",
+    "dev": "vite",
+    "build": "npm test && vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ol": "^9.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.65",
+    "@types/react-dom": "^18.2.22",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6"
+  }
+}

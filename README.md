@@ -1,0 +1,104 @@
+# Creating a new map in React using vite and OpenLayers
+
+## 1. Init and install dependencies:
+
+Initialize project and create `package.json`:
+
+`npm init -y`
+
+Dependencies:
+
+```
+npm i ol
+npm i react
+npm i react-dom
+```
+
+DevDependencies:
+
+```
+npm i -D @types/react
+npm i -D @types/react-dom
+npm i -D husky
+npm i -D prettier
+npm i -D typescript
+npm i -D vite
+```
+
+## 2. Create barebones project
+
+Create `index.html`
+
+```html
+<body>
+  <div id="root"></div>
+</body>
+<script src="src/main.tsx" type="module"></script>
+```
+
+_*Not using the \<HTML>\</HTML> tags means the OL map will be rendering without needing a css file*_
+
+Create `src/main.tsx`
+
+```typescript jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+root.render(<h1>Hello WORLD</h1>);
+```
+
+`ctrl` + `alt` + `insert`: Shortcut for creating files in IntelliJ/Webstorm
+
+If your IDE gives you problems for `import react from "react";` and `import ReactDOM from "react-dom/client";`, try to add `import * as React from "react";` and `import * as ReactDOM from "react-dom/client";`.
+
+## 3. Initialize typescript, husky and prettier:
+
+```
+npx tsc --init --jsx react
+npx prettier --write .
+npx husky init
+```
+
+## 4. Set up scripts
+
+```
+npm pkg set scripts.dev=vite
+npm pkg set scripts.build="npm test && vite build"
+npm pkg set scripts.test="prettier --check . && tsc --noEmit"
+```
+
+## 5. Run scripts and check if it all works.
+
+`npm run dev`
+
+---
+
+Congrats, the basics are set up. Now to create a map that can be displayed in the web browser. Let's go through that.
+
+## 1. Moving the application from main.tsx to application.tsx
+
+Create `src/modules/application.tsx`
+
+`ctrl` + `alt` + `insert`
+
+And insert this:
+
+```typescript jsx
+import React from "react";
+
+export function Application(){
+    return <h1>Hello Application.tsx</h1>
+}
+```
+
+In `src/main.tsx` write this:
+
+```typescript jsx
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import {Application} from "./modules/application";
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+root.render(<Application />);
+```
+
+You should now see _Hello Application.tsx_ in your browser.
