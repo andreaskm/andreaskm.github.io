@@ -36,7 +36,7 @@ Create `index.html`
 <script src="src/main.tsx" type="module"></script>
 ```
 
-_*Not using the \<HTML>\</HTML> tags means the OL map will be rendering without needing a css file*_
+_*Not using the \<HTML>\</HTML> tags means the OL map will be rendering without needing a css file, not recommended*_
 
 I also like to add `<body style="margin: 0">` here, but this can also be added in the application.css file later
 
