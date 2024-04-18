@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Feature, Map, View } from "ol";
+import { Feature, Map, MapBrowserEvent, View } from "ol";
 import { useGeographic } from "ol/proj";
-import { MutableRefObject, useEffect, useRef } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { OSM, Source, StadiaMaps } from "ol/source";
 import TileLayer from "ol/layer/Tile";
 import "ol/ol.css";
@@ -9,6 +9,8 @@ import { FeedMessage } from "../../generated/gtfs-realtime";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import { Point } from "ol/geom";
+import "./application.css";
+import { FeatureLike } from "ol/Feature";
 
 useGeographic();
 
@@ -47,6 +49,29 @@ export function Application() {
     }
   }
 
+  const [vehicleFeatures, setVehicleFeatures] = useState<FeatureLike[]>([]);
+
+  function handlePointerMove(e: MapBrowserEvent<MouseEvent>) {
+    let isThereAFeature = false;
+    const features: FeatureLike[] = [];
+
+    map.forEachFeatureAtPixel(e.pixel, (f) => features.push(f), {
+      hitTolerance: 5,
+      layerFilter: (l) => l === vehicleLayer,
+    });
+
+    if (features.length > 0) {
+      isThereAFeature = true;
+    }
+
+    setVehicleFeatures(features);
+
+    console.log(vehicleFeatures);
+    return isThereAFeature;
+  }
+
+  //map.on("pointermove", handlePointerMove)
+
   useEffect(() => {
     fetchVehiclePosition();
   }, []);
@@ -57,5 +82,29 @@ export function Application() {
     map.setTarget(mapRef.current);
   }, []);
 
-  return <div ref={mapRef}></div>;
+  return (
+    <>
+      <div className={"sidebar"}>
+        <div className={"spacer"}>
+          <button className={"button-4"}>Hello 1</button>
+        </div>
+        <div className={"spacer"}>
+          <button className={"button-4"}>Hello 2</button>
+        </div>
+        <div className={"spacer"}>
+          <button className={"button-4"}>Hello 3</button>
+        </div>
+        <div className={"spacer"}>
+          <button className={"button-4"}>Hello 4</button>
+        </div>
+      </div>
+      <div ref={mapRef} className={"map"}>
+        <div className={"info"}>
+          <div className={"info-text"}>
+            <span>{map.getView().getViewStateAndExtent().extent}</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
