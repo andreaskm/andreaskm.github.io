@@ -11,5 +11,11 @@
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "vite": "^5.2.9"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "dev": "vite --host",
+    "build": "npm test && vite build",
+    "test": "prettier --check . && tsc --noEmit"
   }
 }

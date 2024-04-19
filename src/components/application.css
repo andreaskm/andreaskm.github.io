@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  font-family:
+    BlinkMacSystemFont,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+#root {
+  display: grid;
+  height: 100dvh;
+  grid-template-rows: auto 1fr;
+}
+
+@media only screen and (max-width: 600px) {
+  #root {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: unset;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    gap: 2em;
+    height: 100px;
+  }
+
+  .sidebar .button-60 {
+    display: block;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.space {
+  margin-top: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  user-select: none;
+  padding: 7px;
+}
