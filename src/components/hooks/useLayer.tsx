@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Layer } from "ol/layer";
-import { MapContext } from "./mapContext";
+import { MapContext } from "../map/mapContext";
 import { kommuneLayer } from "../sidebar/checkboxes/kommuneCheckbox";
 
 function useLayer(layer: Layer, checked: boolean) {
