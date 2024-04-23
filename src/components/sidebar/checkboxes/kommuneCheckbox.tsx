@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { GeoJSON } from "ol/format";
-import { MapContext } from "../../map/mapContext";
-import useLayer from "../../map/useLayer";
+import useLayer from "../../hooks/useLayer";
+import { useHover } from "../../hooks/useHover";
 
 export const kommuneLayer = new VectorLayer({
   className: "kommuner",
@@ -17,6 +17,7 @@ function KommuneCheckbox() {
   const [checked, setChecked] = useState(false);
 
   useLayer(kommuneLayer, checked);
+  useHover(checked);
 
   return (
     <div className={"checkbox"}>
