@@ -3,8 +3,9 @@ import useLayer from "../../hooks/useLayer";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { GeoJSON } from "ol/format";
-import { Circle, Fill, Stroke, Style } from "ol/style";
+import { Circle, Fill, Stroke, Style, Text } from "ol/style";
 import { useHoverAirport } from "../../hooks/useHoverAirport";
+import { Cluster } from "ol/source";
 
 function airportStyle() {
   return new Style({
@@ -16,19 +17,55 @@ function airportStyle() {
   });
 }
 
+export const airportSource = new VectorSource({
+  url: "/airports.json",
+  format: new GeoJSON(),
+});
+
 export const airportLayer = new VectorLayer({
   className: "airport",
-  source: new VectorSource({
-    url: "/airports.json",
-    format: new GeoJSON(),
-  }),
+  source: airportSource,
   style: airportStyle,
+});
+
+export const clusterSource = new Cluster({
+  distance: 30,
+  minDistance: 10,
+  source: airportSource,
+});
+
+export const clusterLayer = new VectorLayer({
+  source: clusterSource,
+  style: (feature) => {
+    const size = feature.get("features").length;
+
+    return new Style({
+      image: new Circle({
+        radius: 10 + size * 0.3,
+        stroke: new Stroke({
+          color: "white",
+          width: 1,
+        }),
+        fill: new Fill({
+          color: "white",
+        }),
+      }),
+      text: new Text({
+        text: size.toString(),
+        font: "bold 12px sans-serif",
+        fill: new Fill({
+          color: "black",
+        }),
+      }),
+    });
+  },
 });
 
 function AirportCheckbox() {
   const [checked, setChecked] = useState(true);
 
   useLayer(airportLayer, checked);
+  useLayer(clusterLayer, checked);
   useHoverAirport(checked);
 
   return (
