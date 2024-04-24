@@ -3,7 +3,7 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { GeoJSON } from "ol/format";
 import useLayer from "../../hooks/useLayer";
-import { useHover } from "../../hooks/useHover";
+import { useHoverKommune } from "../../hooks/useHoverKommune";
 
 export const kommuneLayer = new VectorLayer({
   className: "kommuner",
@@ -17,7 +17,7 @@ function KommuneCheckbox() {
   const [checked, setChecked] = useState(false);
 
   useLayer(kommuneLayer, checked);
-  useHover(checked);
+  useHoverKommune(checked);
 
   return (
     <div className={"checkbox"}>

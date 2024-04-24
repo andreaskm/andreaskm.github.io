@@ -8,11 +8,9 @@ function useLayer(layer: Layer, checked: boolean) {
   useEffect(() => {
     if (checked) {
       setLayers((old) => [...old, layer]);
-      console.log("Toggled layer");
     }
     return () => {
       setLayers((old) => old.filter((l) => l !== layer));
-      console.log("Untoggled layer");
     };
   }, [checked]);
 }

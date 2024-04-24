@@ -41,8 +41,9 @@
 
 .sidebar {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: left;
+  gap: 10px;
 }
 
 .space {
@@ -55,4 +56,11 @@
   position: relative;
   user-select: none;
   padding: 7px;
+}
+
+.hover-overlay {
+  padding: 7px;
+  background-color: rgba(0, 0, 0, 0.52);
+  color: white;
+  border-radius: 10%;
 }

@@ -1,10 +1,12 @@
 import React from "react";
 import KommuneCheckbox from "./checkboxes/kommuneCheckbox";
+import AirportCheckbox from "./checkboxes/AirportCheckbox";
 
 function Sidebar() {
   return (
     <div className={"sidebar"}>
       <KommuneCheckbox />
+      <AirportCheckbox />
     </div>
   );
 }
