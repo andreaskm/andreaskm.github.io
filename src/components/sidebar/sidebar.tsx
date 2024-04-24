@@ -4,6 +4,7 @@ import AirportCheckbox from "./checkboxes/AirportCheckbox";
 
 function Sidebar() {
   return (
+    //sidebar
     <div className={"sidebar"}>
       <KommuneCheckbox />
       <AirportCheckbox />
