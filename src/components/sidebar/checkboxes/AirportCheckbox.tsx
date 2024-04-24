@@ -6,6 +6,7 @@ import { GeoJSON } from "ol/format";
 import { Circle, Fill, Stroke, Style, Text } from "ol/style";
 import { useHoverAirport } from "../../hooks/useHoverAirport";
 import { Cluster } from "ol/source";
+import { map } from "../../map/mapContext";
 
 function airportStyle() {
   return new Style({
@@ -26,11 +27,12 @@ export const airportLayer = new VectorLayer({
   className: "airport",
   source: airportSource,
   style: airportStyle,
+  maxResolution: 700,
 });
 
 export const clusterSource = new Cluster({
-  distance: 30,
-  minDistance: 10,
+  distance: 50,
+  minDistance: 0,
   source: airportSource,
 });
 
@@ -41,7 +43,7 @@ export const clusterLayer = new VectorLayer({
 
     return new Style({
       image: new Circle({
-        radius: 10 + size * 0.3,
+        radius: 10 + size * 0.2,
         stroke: new Stroke({
           color: "white",
           width: 1,
@@ -60,9 +62,13 @@ export const clusterLayer = new VectorLayer({
     });
   },
 });
-
+//485.3
 function AirportCheckbox() {
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
+
+  const resolution = map.getView().getResolution();
+
+  console.log(resolution);
 
   useLayer(airportLayer, checked);
   useLayer(clusterLayer, checked);
