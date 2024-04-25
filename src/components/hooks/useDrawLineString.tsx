@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { map } from "../map/mapContext";
 import { Draw } from "ol/interaction";
 import { drawingSource } from "../application";
@@ -41,7 +41,9 @@ function UseDrawLineString(checked: boolean) {
       handleDrawLineString();
     }
 
-    return () => map.removeInteraction(draw);
+    return () => {
+      map.removeInteraction(draw);
+    };
   }, [checked]);
 
   return lengthOfString;
