@@ -12,6 +12,13 @@ import { map, MapContext } from "./map/mapContext";
 import { Layer } from "ol/layer";
 import TileLayer from "ol/layer/Tile";
 import { OSM } from "ol/source";
+import VectorSource from "ol/source/Vector";
+import VectorLayer from "ol/layer/Vector";
+
+export const drawingSource = new VectorSource();
+export const drawingLayer = new VectorLayer({
+  source: drawingSource,
+});
 
 function Application() {
   const [vectorLayers, setVectorLayers] = useState<Layer[]>([]);
