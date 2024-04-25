@@ -17,7 +17,7 @@ function LineStringCheckbox() {
         {checked
           ? "Stop drawing. " +
             lengthOfString +
-            " (Double click to stop drawing)"
+            " (Double click to save length.)"
           : "Draw"}
       </label>
     </div>

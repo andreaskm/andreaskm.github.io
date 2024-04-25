@@ -30,8 +30,9 @@
 
   .sidebar {
     flex-direction: row;
+    flex-flow: wrap;
     gap: 2em;
-    height: 100px;
+    height: 100%;
   }
 
   .sidebar .button-60 {
@@ -45,6 +46,7 @@
   justify-content: left;
   gap: 10px;
   padding: 5px;
+  align-items: center;
 }
 
 .space {
