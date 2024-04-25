@@ -56,6 +56,8 @@ export function useHoverAirport(checked: boolean) {
       map?.on("pointermove", handlePointerMove);
     }
 
-    return () => map?.un("pointermove", handlePointerMove);
+    return () => {
+      map?.un("pointermove", handlePointerMove);
+    };
   }, [checked]);
 }

@@ -43,7 +43,7 @@ export const clusterLayer = new VectorLayer({
 
     return new Style({
       image: new Circle({
-        radius: 10 + size * 0.2,
+        radius: 10 + size * 0.1,
         stroke: new Stroke({
           color: "white",
           width: 1,

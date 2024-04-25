@@ -1,7 +1,5 @@
 import { useGeographic } from "ol/proj";
 import { Map, View } from "ol";
-import TileLayer from "ol/layer/Tile";
-import { OSM } from "ol/source";
 import React, { Dispatch, SetStateAction } from "react";
 import { Layer } from "ol/layer";
 
@@ -11,6 +9,7 @@ interface MapContext {
   map: Map;
   setLayers: Dispatch<SetStateAction<Layer[]>>;
   layers: Layer[];
+  setBaseLayer: (layer: Layer) => void;
 }
 
 export const map = new Map({
@@ -24,4 +23,5 @@ export const MapContext = React.createContext<MapContext>({
   map,
   setLayers: () => {},
   layers: [],
+  setBaseLayer: () => {},
 });

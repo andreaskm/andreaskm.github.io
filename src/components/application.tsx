@@ -1,4 +1,10 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, {
+  MutableRefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import "ol/ol.css";
 import "./application.css";
 import Sidebar from "./sidebar/sidebar";
@@ -8,9 +14,19 @@ import TileLayer from "ol/layer/Tile";
 import { OSM } from "ol/source";
 
 function Application() {
-  const [layers, setLayers] = useState<Layer[]>([
-    new TileLayer({ source: new OSM() }),
-  ]);
+  const [vectorLayers, setVectorLayers] = useState<Layer[]>([]);
+  const [baseLayer, setBaseLayer] = useState<Layer>(
+    () => new TileLayer({ source: new OSM() }),
+  );
+
+  const allLayers = useMemo(
+    () => [baseLayer, ...vectorLayers],
+    [baseLayer, vectorLayers],
+  );
+
+  useEffect(() => {
+    map.setLayers(allLayers);
+  }, [allLayers]);
 
   const mapRef = useRef() as MutableRefObject<HTMLDivElement>;
   useEffect(() => {
@@ -18,12 +34,19 @@ function Application() {
   }, []);
 
   useEffect(() => {
-    map.setLayers(layers);
-    console.log(layers);
-  }, [layers]);
+    map.setLayers(allLayers);
+    console.log(allLayers);
+  }, [allLayers]);
 
   return (
-    <MapContext.Provider value={{ map, layers, setLayers }}>
+    <MapContext.Provider
+      value={{
+        map,
+        layers: vectorLayers,
+        setLayers: setVectorLayers,
+        setBaseLayer,
+      }}
+    >
       <Sidebar />
       <div ref={mapRef}></div>
     </MapContext.Provider>
