@@ -6,7 +6,6 @@ import { GeoJSON } from "ol/format";
 import { Circle, Fill, Stroke, Style, Text } from "ol/style";
 import { useHoverAirport } from "../../hooks/useHoverAirport";
 import { Cluster } from "ol/source";
-import { map } from "../../map/mapContext";
 
 function airportStyle() {
   return new Style({
@@ -65,10 +64,6 @@ export const clusterLayer = new VectorLayer({
 //485.3
 function AirportCheckbox() {
   const [checked, setChecked] = useState(false);
-
-  const resolution = map.getView().getResolution();
-
-  console.log(resolution);
 
   useLayer(airportLayer, checked);
   useLayer(clusterLayer, checked);

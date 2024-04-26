@@ -5,7 +5,10 @@ function LineStringCheckbox() {
   const [checked, setChecked] = useState(false);
   const [freehand, setFreehand] = useState(false);
 
-  const lengthOfString = useDrawLineString(checked, freehand);
+  const { currentLength: lengthOfString, previousMeasures } = useDrawLineString(
+    checked,
+    freehand,
+  );
 
   return (
     <div className={"checkbox full-width"}>
@@ -33,8 +36,21 @@ function LineStringCheckbox() {
       ) : (
         ""
       )}
+      {checked ? (
+        <div className={"previous-measures"}>
+          <ol>
+            {previousMeasures.map((measure) => (
+              <li>{measure}</li>
+            ))}
+          </ol>
+        </div>
+      ) : (
+        ""
+      )}
 
-      <div className={"length-style"}>{checked ? lengthOfString : ""}</div>
+      <div className={"length-style"}>
+        {checked && lengthOfString ? "Current measure: " + lengthOfString : ""}
+      </div>
     </div>
   );
 }

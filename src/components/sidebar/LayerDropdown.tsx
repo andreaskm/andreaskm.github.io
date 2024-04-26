@@ -35,7 +35,9 @@ function LayerDropdown() {
         value={selectedLayer.id}
       >
         {layerOptions.map(({ id, name }) => (
-          <option value={id}>{name}</option>
+          <option value={id} key={id}>
+            {name}
+          </option>
         ))}
       </select>
       {selectedLayer.name}

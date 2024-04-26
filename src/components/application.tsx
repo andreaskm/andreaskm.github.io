@@ -42,7 +42,6 @@ function Application() {
 
   useEffect(() => {
     map.setLayers(allLayers);
-    console.log(allLayers);
   }, [allLayers]);
 
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { map } from "../map/mapContext";
 import { Draw } from "ol/interaction";
 import { drawingSource } from "../application";
@@ -21,7 +21,8 @@ const formatLength = function (line: LineString) {
 
 function UseDrawLineString(checked: boolean, freehand?: boolean) {
   const [lengthOfString, setLengthOfString] = useState<string>();
-  //const [previousMeasures, setPreviousMeasures] = useState<string[]>([]);
+  const [previousMeasures, setPreviousMeasures] = useState<string[]>([]);
+  const previousMeasuresRef = useRef(previousMeasures);
   let draw: Draw;
 
   let sketch;
@@ -52,8 +53,8 @@ function UseDrawLineString(checked: boolean, freehand?: boolean) {
       let tooltipCoord;
       map.addInteraction(draw);
       let listener;
-      console.log(lengthOfString);
       draw.on("drawstart", (e) => {
+        setLengthOfString(undefined);
         sketch = e.feature;
         listener = sketch.getGeometry()!.on("change", (e) => {
           const geometry = e.target;
@@ -67,13 +68,21 @@ function UseDrawLineString(checked: boolean, freehand?: boolean) {
         });
       });
 
-      draw.on("drawend", () => {
+      draw.on("drawend", (event) => {
+        const sketch = event.feature;
+        const geometry = sketch.getGeometry() as LineString;
+
+        const length = formatLength(geometry);
+
+        setLengthOfString(length);
+
+        previousMeasuresRef.current.push(length);
+        console.log(previousMeasuresRef.current);
         map.removeOverlay(overlay);
       });
     }
 
     if (checked) {
-      console.log(lengthOfString);
       handleDrawLineString();
     }
 
@@ -83,7 +92,10 @@ function UseDrawLineString(checked: boolean, freehand?: boolean) {
     };
   }, [checked, freehand]);
 
-  return lengthOfString;
+  return {
+    currentLength: lengthOfString,
+    previousMeasures: previousMeasuresRef.current,
+  };
 }
 
 export default UseDrawLineString;

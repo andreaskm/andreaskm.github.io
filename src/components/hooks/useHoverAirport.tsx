@@ -48,10 +48,6 @@ export function useHoverAirport(checked: boolean) {
   }
 
   useEffect(() => {
-    console.log(activeFeature?.getProperties().name);
-  }, [activeFeature]);
-
-  useEffect(() => {
     if (checked) {
       map?.on("pointermove", handlePointerMove);
     }
